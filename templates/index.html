@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroFit AI | Personal Fitness Coach</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">N</span> NeuroFit <span class="ai">AI</span></a>
+    <nav><a href="#planner">Create Plan</a><a href="#assistant">AI Assistant</a><a href="#history">History</a></nav>
+    <a class="nav-cta" href="#planner">Get Started</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> YOUR PERSONAL WELLNESS COMPANION</div>
+        <h1>Small steps.<br><span>Stronger you.</span></h1>
+        <p>Build a fitness routine that fits your goals, experience and everyday schedule. Your journey starts with one simple plan.</p>
+        <div class="hero-actions"><a class="button primary" href="#planner">Create my plan <span>→</span></a><a class="text-link" href="#how">How it works</a></div>
+        <div class="hero-note"><span>✦</span> Beginner-friendly • Flexible • Personalised</div>
+      </div>
+      <div class="hero-art">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="figure-card">
+          <div class="figure-top"><span>YOUR DAILY RESET</span><span class="live-dot">● LIVE</span></div>
+          <div class="figure-circle"><div class="figure-inner"><span>MOVE</span><strong>01</strong><small>DAY AT A TIME</small></div></div>
+          <div class="figure-bottom"><span>✦</span> Progress over perfection</div>
+        </div>
+        <div class="float-tag tag-one">✦ Personalised plans</div><div class="float-tag tag-two">↗ Healthy habits</div>
+      </div>
+    </section>
+
+    <section class="stats" id="how">
+      <div><strong>01</strong><span>Share your goals</span></div><div><strong>02</strong><span>Get your plan</span></div><div><strong>03</strong><span>Build your routine</span></div>
+    </section>
+
+    <section class="section" id="planner">
+      <div class="section-heading"><div><div class="eyebrow">LET'S GET PERSONAL</div><h2>Your fitness profile</h2><p>Tell us a little about yourself. NeuroFit AI will create a simple starter plan.</p></div><span class="step-label">STEP 01 / 01</span></div>
+      <form id="planForm" class="planner-card">
+        <div class="form-grid">
+          <label class="field full">Your name<input name="name" placeholder="Enter your name" required maxlength="60"></label>
+          <label class="field">Fitness goal<select name="goal" required><option value="general_fitness">General fitness</option><option value="weight_loss">Weight management</option><option value="muscle_gain">Build strength</option><option value="flexibility">Flexibility & mobility</option></select></label>
+          <label class="field">Experience level<select name="experience" required><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></label>
+          <label class="field">Available equipment<select name="equipment" required><option value="none">No equipment</option><option value="home">Basic home equipment</option><option value="gym">Gym access</option></select></label>
+          <label class="field">Main focus<select name="focus" required><option value="full_body">Full body</option><option value="strength">Strength</option><option value="cardio">Cardio</option><option value="flexibility">Flexibility</option><option value="healthy_habits">Healthy habits</option></select></label>
+          <label class="field">Time available per day (minutes)<input type="number" name="minutes" min="10" max="180" value="30" required></label>
+          <label class="field">Workout days per week<input type="number" name="workout_days" min="1" max="7" value="4" required></label>
+          <label class="field">Recovery days per week<input type="number" name="recovery_days" min="0" max="7" value="3" required></label>
+        </div>
+        <div class="form-footer"><p><span>🔒</span> Your plan details are saved locally in this project database.</p><button class="button primary" type="submit" id="submitBtn">Generate my plan <span>→</span></button></div>
+        <div id="formError" class="error" role="alert"></div>
+      </form>
+    </section>
+
+    <section class="section results-section" id="results" hidden>
+      <div class="section-heading"><div><div class="eyebrow">MADE FOR YOUR ROUTINE</div><h2>Your starter plan</h2><p>Use this as a flexible guide and adjust it to what feels comfortable.</p></div><span class="result-icon">✦</span></div>
+      <div class="result-grid">
+        <article class="result-card workout-card"><div class="card-kicker">✦ MOVEMENT PLAN</div><h3 id="workoutTitle">Weekly outline</h3><ul id="workoutList"></ul></article>
+        <article class="result-card diet-card"><div class="card-kicker">◒ EVERYDAY NOURISHMENT</div><h3>Balanced meal ideas</h3><ul id="dietList"></ul></article>
+      </div>
+      <div class="notes-card"><h3>Plan notes</h3><p id="levelNote"></p><p id="equipmentNote"></p><p id="durationNote"></p><p id="focusNote"></p><p id="weeklyNote"></p></div>
+      <p class="disclaimer">Wellness note: This is general educational guidance, not medical advice. Stop if you feel pain, dizziness or unwell. If you have a health condition, injury, are pregnant, or are unsure what activity is safe, consult a qualified healthcare professional before starting.</p>
+    </section>
+
+    <section class="section assistant-section" id="assistant">
+      <div class="section-heading"><div><div class="eyebrow">ASK NEUROFIT</div><h2>Your fitness assistant</h2><p>Ask a general question about exercise, food or healthy routines.</p></div><div class="assistant-symbol">✳</div></div>
+      <div class="chat-card">
+        <div class="chat-head"><div class="avatar">N</div><div><strong>NeuroFit Assistant</strong><small><span class="live-dot">●</span> Ready to help</small></div></div>
+        <div class="chat-messages" id="chatMessages"><div class="bubble bot">Hi! I'm your NeuroFit assistant. Ask me about workouts, diet, hydration or getting started. 👋</div></div>
+        <form id="chatForm" class="chat-input"><input id="chatText" placeholder="Type your question..." autocomplete="off" required><button aria-label="Send message" type="submit">➤</button></form>
+      </div>
+    </section>
+
+    <section class="section history-section" id="history">
+      <div class="section-heading"><div><div class="eyebrow">YOUR ACTIVITY</div><h2>Recent plans</h2><p>Plans created on this device are listed here.</p></div><button class="outline-button" id="refreshHistory">Refresh ↻</button></div>
+      <div id="historyList" class="history-list"><p class="empty-state">Your saved plans will appear here after you create one.</p></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">N</span> NeuroFit <span class="ai">AI</span></a><p>Made to help you move towards a healthier routine.</p><small>© 2026 NeuroFit AI • Educational wellness project</small></footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
